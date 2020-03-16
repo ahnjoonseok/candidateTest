@@ -110,6 +110,9 @@ video::-webkit-media-controls-panel {
     width: 260px;
 }
 
+#question-img {
+    width: 260px;
+}
 
 .title-p {
     font-size: 23px;
@@ -146,6 +149,16 @@ video::-webkit-media-controls-panel {
     border: none;
     color: white;
     margin: 0 0 10px 0;
+    padding: 20px 30px;
+    font-size: 18px;
+}
+
+.quesiton-btn {
+    background-color: rgb(36, 33, 39);
+    width: 70%;
+    border: none;
+    color: white;
+    margin: 0 auto 10px auto;
     padding: 20px 30px;
     font-size: 18px;
 }

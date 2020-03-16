@@ -59,6 +59,124 @@ function sendLink() {
   });
 }
 
+const startButton = document.getElementById('start-btn')
+const titleContainer = document.getElementById('title-container')
+
+const questionContainer = document.getElementById('quesiton-container')
+const questionElement = document.getElementById('question')
+const questionImage = document.getElementById('question-img')
+const answerButtonsElement = document.getElementById('answer-buttons')
+
+const resultContainer = document.getElementById('result-container')
+
+
+let shuffledQuestion, currentQuestionIndex
+
+startButton.addEventListener('click', startGame)
 
 
 
+function startGame() {
+  titleContainer.classList.add('hide');
+  questionContainer.classList.remove('hide');
+  shuffledQuestions = questions.sort(() => Math.random() - .5)
+  currentQuestionIndex = 0
+  setNextQuestion();
+}
+
+function setNextQuestion() {
+  resetState() 
+  showQuestion(shuffledQuestions[currentQuestionIndex])
+
+}
+
+function resetState() {
+  while (answerButtonsElement.firstChild) {
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+  }
+}
+
+function showQuestion(question) {
+  questionElement.innerText = question.quesiton
+  questionImage.src = question.image
+
+  question.answer.forEach(answer => {
+
+    const button = document.createElement('button')
+    button.innerText = answer.text
+    button.classList.add('quesiton-btn')
+    button.addEventListener('click', selectAnswer)
+    answerButtonsElement.appendChild(button)
+
+  })
+}
+
+function selectAnswer() {
+  currentQuestionIndex++
+  if(currentQuestionIndex > 5){
+    result()
+    return
+  }
+  setNextQuestion();
+}
+
+function result() {
+  questionContainer.classList.add('hide')
+  resultContainer.classList.remove('hide')
+
+
+}
+
+
+const questions = [
+  {
+    quesiton: '국회의원의 나이는',
+    image: './img/man3.png',
+    answer: [
+      { text: '젊은 국회의원이 좋다', value: 3 },
+      { text: '연륜이 있어야한다.', value: 0 }
+    ]
+  },
+  {
+    quesiton: '여성국회의원은',
+    image: './img/man2.png',
+    answer: [
+      { text: '많아져야한다', value: 3 },
+      { text: '지금이 딱 좋다', value: 0 },
+      { text: '더 없어져야한다', value: 0 }
+    ]
+  },
+  {
+    quesiton: '게임을 좋아하는 국회의원',
+    image: './img/man1.png',
+    answer: [
+      { text: '필요하다', value: 3 },
+      { text: '게임같은 소리하네', value: 0 }
+    ]
+  },
+  {
+    quesiton: '국회의원의 나이는2',
+    image: './img/man2.png',
+    answer: [
+      { text: '젊은 국회의원이 좋다', value: 3 },
+      { text: '연륜이 있어야한다.', value: 0 }
+    ]
+  },
+  {
+    quesiton: '여성국회의원은2',
+    image: './img/man4.png',
+    answer: [
+      { text: '많아져야한다', value: 3 },
+      { text: '지금이 딱 좋다', value: 0 },
+      { text: '더 없어져야한다', value: 0 }
+    ]
+  },
+  {
+    quesiton: '게임을 좋아하는 국회의원2',
+    image: './img/man4.png',
+    answer: [
+      { text: '필요하다', value: 3 },
+      { text: '게임같은 소리하네', value: 0 }
+    ]
+  }
+]
